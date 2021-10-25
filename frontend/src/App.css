@@ -1,0 +1,139 @@
+html {
+  scroll-behavior: smooth;
+}
+.center {
+  text-align: center;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "PT Sans", sans-serif;
+}
+
+.bg {
+  background-color: #077d82;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #B9B9B9;
+}
+.max  {
+  margin: auto;
+  max-width: 1050px;
+}
+.collection-card .stripe {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  padding: 1.2rem;
+  text-align: center;
+}
+.collection-card .stripe.dark {
+  background-color: rgba(231, 231, 231, 0.7);
+}
+.text-font {
+  font-family: "PT Sans", sans-serif;
+  font-size: 15px;
+  color: #182d64;
+  font-weight: bold;
+  margin: 0;
+}
+
+.text_none {
+  text-decoration: none;
+  display: block;
+}
+.margin_center {
+  display: flex;
+  justify-content: center;
+}
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.displayFlex {
+  display: flex;
+}
+.textAlign {
+  text-align: center;
+}
+
+.justifyAlign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container {
+  max-width: 650px;
+  margin: auto;
+}
+
+.marginAuto {
+  margin: auto;
+}
+
+.verticleAlign {
+  display: flex;
+  align-items: center;
+}
+.baseline {
+  display: flex;
+  align-items: baseline;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+.displayBlock {
+  display: block;
+}
+
+.flexLeft {
+  display: flex;
+  justify-content: right;
+}
+
+.whiteColor {
+  color: white;
+}
+.working-inline {
+  padding-top: 60px;
+  margin-top: -60px;
+}
+
+.backBlue {
+  background-color: #e7f6fc;
+}
+
+.greenColor {
+  color: #077d82;
+  font-weight: 500;
+}

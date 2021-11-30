@@ -1,0 +1,15 @@
+.bg {
+  background-color: #e7f6fc;
+}
+p {
+  font-size: 1.1rem;
+}
+
+.underline {
+  height: 4px;
+  width: 8rem;
+  background-color: #077d82;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,196 @@
+.serv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* padding: 40px calc((100% - (300px * 3)) / 2); */
+}
+
+.servic {
+  flex: 0 0 300px;
+  margin: 1em 20px;
+}
+
+.parent-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-item {
+  flex: 0 0 100px;
+  margin: 3px 20px;
+}
+
+.overflow {
+  overflow: hidden;
+}
+.img {
+  /* background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain; */
+  border: 2px solid #a8bbbf;
+  width: 120px;
+  height: 60px;
+}
+
+.backfff {
+  background-color: #fff;
+}
+.backgr {
+  background-color: #d6dee1;
+}
+.backgr2 {
+  background-color: #a8bbbf;
+}
+.img:hover {
+  border: 2px solid #077d82;
+}
+
+.backgreen {
+  background-color: #077d82;
+}
+
+.boxControl {
+  border: 2px solid #fff;
+  background-color: #077d82;
+  border-radius: 6px;
+}
+
+.boxMargin {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.widthIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.widthIconGrid {
+  width: 25px;
+  height: 22px;
+}
+
+.selectSearch {
+  border: 0px;
+  padding: 10px;
+  padding-right: 15px;
+  text-align: right;
+  width: 100px;
+  cursor: pointer;
+}
+select:focus {
+  outline: none !important;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+.buttonSearch {
+  border: 0px;
+  border-radius: 0px 5px 5px 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.inputSearch {
+  border: 0px;
+  border-radius: 5px 0px 0px 5px;
+  padding: 10px;
+  width: 40%;
+}
+
+.spaceAroundButton {
+  margin: 0 10px;
+}
+
+.lineChange {
+  border: 0px;
+  border-radius: 3px;
+  padding: 5px;
+  width: 90px;
+}
+
+.lineChangeInner {
+  margin: 0 5px;
+}
+
+.plus {
+  width: 20px;
+  height: 20px;
+}
+
+.padding {
+  padding: 10px;
+  text-align: center;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.marginList {
+  /* margin: 0px 36px;
+  margin-bottom: 15px;
+  margin-top: 15px; */
+}
+
+div.paddingButtonList {
+  /* padding: 3px;
+  padding-left: 20px;
+  padding-right: 20px; */
+}
+
+button.buttonMarginLeft {
+  margin-left: 10px !important;
+}
+
+.border {
+  border-radius: 5px;
+}
+
+/* .paddingListBox:last-child {
+  padding-bottom: 0px!important;
+} */
+
+.paddingListBox {
+  padding: 0px;
+}
+
+.box {
+  padding: 8px 0px 8px 16px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.font {
+  font-weight: 600;
+}
+
+.borderList {
+  width: 900px;
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+
+/* .content {
+  background-color: #077d82;
+  border-radius: 5px;
+  width: calc(960px - 310px);
+  height: 140px;
+  margin: 5px !important;
+  overflow: scroll;
+  overflow-x: hidden;
+  color: white;
+  font-size: 18px;
+  padding: 5px 5px 5px 8px;
+} */
+
+.endIcons {
+  width: 400px;
+  margin: auto;
+}

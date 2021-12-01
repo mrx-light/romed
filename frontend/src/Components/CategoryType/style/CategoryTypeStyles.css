@@ -1,0 +1,40 @@
+.listBox {
+  border: 3px solid #077d82;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.photoListBox {
+  width: 220px;
+  height: 180px;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-right: 5px;
+  border-right: 3px solid #077d82;
+}
+
+.paddingButtonList {
+  padding: 10px;
+  word-break: break-word;
+  width: 32%;
+}
+
+.content {
+  width: 36%;
+}
+
+.aboutProduse {
+  /* overflow: hidden; */
+  overflow-y: scroll;
+  height: 170px;
+}
+.photoCategorys {
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .photoCategorys {
+    margin: auto;
+    margin-bottom: 20px;
+  }
+} ;

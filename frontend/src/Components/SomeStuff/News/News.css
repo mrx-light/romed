@@ -1,0 +1,8 @@
+.btn-button {
+  background-color: #077d82 !important;
+  color: #fff !important;
+  border: none;
+}
+.btn-button:focus {
+  box-shadow: none !important;
+}

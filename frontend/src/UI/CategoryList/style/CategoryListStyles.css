@@ -1,0 +1,43 @@
+.backgr {
+  background-color: #d6dee1;
+}
+
+.categoryList {
+  border-radius: 5px;
+}
+
+.borderMainText {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.borderSecondaryText {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.categorysScroll {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 400px;
+  width: 250px;
+}
+
+/* .boxCategorysLimits {
+  
+} */
+
+@media (max-width: 900px) {
+  .categoryList {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 400px;
+    text-align: center;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #d6dee1;
+  }
+}

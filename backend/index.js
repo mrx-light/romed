@@ -28,6 +28,8 @@ mongoClient.connect(function (err, client) {
   const collectionServises = db.collection("services");
   const collectionPassword = db.collection("passwords");
   const collectionPasswordAdmin = db.collection("passwordAdmin");
+  const collectionBoolAdmin = db.collection("boolAdmin");
+  const collectionBoolLogin = db.collection("boolLogin");
 
   app.locals.collectionProducts = collectionProducts;
   app.locals.collectionCategorys = collectionCategorys;
@@ -36,6 +38,8 @@ mongoClient.connect(function (err, client) {
   app.locals.collectionServises = collectionServises;
   app.locals.collectionPassword = collectionPassword;
   app.locals.collectionPasswordAdmin = collectionPasswordAdmin;
+  app.locals.collectionBoolAdmin = collectionBoolAdmin;
+  app.locals.collectionBoolLogin = collectionBoolLogin;
 });
 
 app.get("/", (req, res) => {

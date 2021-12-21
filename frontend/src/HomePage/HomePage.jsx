@@ -4,12 +4,10 @@ import "./HomePageStyles.css";
 import CarouselApp from "./Carusel";
 function HomePage() {
   return (
-    //bgBody
-    <div className="">
-
+    <>
       <CarouselApp />
       <Footer />
-    </div>
+    </>
   );
 }
 

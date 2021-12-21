@@ -15,6 +15,6 @@ export const useStyles = makeStyles({
   headerList: {
     paddingRight: "40px",
     paddingLeft: "20px",
-    margin: "-1px",
+    // margin: "1px",
   },
 });

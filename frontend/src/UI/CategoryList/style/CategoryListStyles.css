@@ -3,17 +3,12 @@
 }
 
 .categoryList {
+  border: 3px solid #077d82;
   border-radius: 5px;
 }
 
-.borderMainText {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
 .borderSecondaryText {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  text-align: left;
 }
 
 .categorysScroll {
@@ -23,10 +18,6 @@
   width: 250px;
 }
 
-/* .boxCategorysLimits {
-  
-} */
-
 @media (max-width: 900px) {
   .categoryList {
     width: 60%;
@@ -34,10 +25,15 @@
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    height: 400px;
     text-align: center;
+    background-color: #d6dee1;
+    border: 3px solid #077d82;
+  }
+
+  .borderSecondaryText {
+    height: 360px;
+
     overflow: hidden;
     overflow-y: scroll;
-    background-color: #d6dee1;
   }
 }

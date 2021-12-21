@@ -17,10 +17,10 @@ const storageProducts = multer.diskStorage({
     callback(
       null,
       path.parse(file.originalname).name +
-      "_" +
-      Date.now() +
-      "" +
-      path.parse(file.originalname).ext
+        "_" +
+        Date.now() +
+        "" +
+        path.parse(file.originalname).ext
     );
   },
 });
@@ -32,10 +32,10 @@ const storageAbout = multer.diskStorage({
     callback(
       null,
       path.parse(file.originalname).name +
-      "_" +
-      Date.now() +
-      "" +
-      path.parse(file.originalname).ext
+        "_" +
+        Date.now() +
+        "" +
+        path.parse(file.originalname).ext
     );
   },
 });
@@ -47,10 +47,10 @@ const storageBrands = multer.diskStorage({
     callback(
       null,
       path.parse(file.originalname).name +
-      "_" +
-      Date.now() +
-      "" +
-      path.parse(file.originalname).ext
+        "_" +
+        Date.now() +
+        "" +
+        path.parse(file.originalname).ext
     );
   },
 });
@@ -62,10 +62,10 @@ const storageNews = multer.diskStorage({
     callback(
       null,
       path.parse(file.originalname).name +
-      "_" +
-      Date.now() +
-      "" +
-      path.parse(file.originalname).ext
+        "_" +
+        Date.now() +
+        "" +
+        path.parse(file.originalname).ext
     );
   },
 });
@@ -77,17 +77,13 @@ const storageCategorys = multer.diskStorage({
     callback(
       null,
       path.parse(file.originalname).name +
-      "_" +
-      Date.now() +
-      "" +
-      path.parse(file.originalname).ext
+        "_" +
+        Date.now() +
+        "" +
+        path.parse(file.originalname).ext
     );
   },
 });
-
-
-
-
 
 const uploadProducts = multer({
   storage: storageProducts,
@@ -107,41 +103,37 @@ const uploadCategorys = multer({
 
 // uploadCategorys
 
-
-router.post('/email', function (req, res) {
+router.post("/email", function (req, res) {
   try {
     if (req.body) {
       console.log(req.body);
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: "gmail",
         auth: {
-          user: 'pmalanici@gmail.com',
-          pass: 'mrxlight_instagram'
-        }
+          user: "pmalanici@gmail.com",
+          pass: "mrxlight_instagram",
+        },
       });
 
       const mailOptions = {
         from: req.body.email,
-        to: 'pmalanici@gmail.com',
+        to: "pmalanici@gmail.com",
         subject: "Romedcom User Email",
-        text: `Nume ${req.body.name}\nEmail: ${req.body.email} \nNumar: ${req.body.number} \nMesaj: ${req.body.text}`
+        text: `Nume ${req.body.name}\nEmail: ${req.body.email} \nNumar: ${req.body.number} \nMesaj: ${req.body.text}`,
       };
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log("Email sent: " + info.response);
         }
       });
     }
-
-
   } catch (error) {
     console.log("error: ", error);
   }
-})
-
+});
 
 router.post(
   "/categorysPhoto",
@@ -829,6 +821,56 @@ router.get("/productsByCategorys/:id/:limit", async function (req, res) {
     res.status(201).send(result);
   } catch (error) {
     console.log("error:", error);
+  }
+});
+
+router.get("/boolLogin", async function (req, res) {
+  try {
+    const collectionBoolLogin = req.app.locals.collectionBoolLogin;
+    const result = await collectionBoolLogin.find().toArray();
+    if (result) {
+      res.status(201).send({ stat: "ok", arr: result });
+      return;
+    }
+    res
+      .status(500)
+      .send({ stat: null, arr: "Some Problems With Server Please Try Later" });
+  } catch (error) {
+    console.log("error:", error);
+    res.status(500).send({
+      stat: null,
+      message: "Some Problems With Server Please Try Later",
+    });
+  }
+});
+
+router.put("/boolLogin", async function (req, res) {
+  try {
+    if (req.body) {
+      const collectionBoolLogin = req.app.locals.collectionBoolLogin;
+      const result = await collectionBoolLogin.findOneAndUpdate(
+        { _id: "boolLogin" },
+        { $set: { bool: req.body.bool } }
+      );
+      if (result) {
+        res.status(201).send({ stat: "ok", message: "The Bool was changed" });
+        return;
+      }
+      res.status(500).send({
+        stat: null,
+        arr: "Some Problems With Server Please Try Later",
+      });
+      return;
+    }
+    res
+      .status(500)
+      .send({ stat: null, arr: "Some Problems With Server Please Try Later" });
+  } catch (error) {
+    console.log("error:", error);
+    res.status(500).send({
+      stat: null,
+      message: "Some Problems With Server Please Try Later",
+    });
   }
 });
 

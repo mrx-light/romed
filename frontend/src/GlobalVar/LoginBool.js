@@ -1,5 +1,9 @@
 let bool = false;
-export const loginBool = () => {
-  bool = !bool;
+export const loginBool = (boolean) => {
+  if (boolean) {
+    bool = true;
+    return bool;
+  }
+  bool = false;
   return bool;
 };

@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 const useStyles = makeStyles({
   root: {
     maxWidth: 300,
+    border: "3px solid #077d82",
   },
   noPaddin: {
     padding: "5px 5px 0px 15px",
@@ -62,7 +63,11 @@ const CardProduct = (props) => {
         <Button style={styleButton} onClick={props.buttonHandler}>
           {props.link}
         </Button>
-        <Button style={styleButton} title={props.type} onClick={props.buttonHandlerCategorys}>
+        <Button
+          style={styleButton}
+          title={props.type}
+          onClick={props.buttonHandlerCategorys}
+        >
           {props.type.length > 12 ? "TIPUL" : props.type}
         </Button>
       </CardActions>

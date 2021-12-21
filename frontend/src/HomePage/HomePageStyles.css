@@ -8,7 +8,7 @@
 
 .containerPhotosCategorys {
   width: 508px;
-
+  border: 4px solid #077d82;
   border-radius: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -35,6 +35,12 @@
   color: black;
 }
 
+.caruselBigText {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
 .bgBody {
   background-color: #d6dee1;
 }
@@ -46,14 +52,14 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  border: 3px solid;
+  border: 3px solid #077d82;
   border-radius: 10px;
 }
 
 .contentAbout {
   width: 49%;
   height: 250px;
-  border: 3px solid;
+  border: 3px solid #077d82;
   border-radius: 10px;
   background-color: #e7f6fc;
   padding: 5px;
@@ -71,12 +77,12 @@
 }
 
 .borderIframe {
-  border: 3px solid black;
+  border: 3px solid #077d82;
   border-radius: 10px;
 }
 
 .borderInputs {
-  border: 3px solid black;
+  border: 3px solid #077d82;
   border-radius: 5px;
 }
 

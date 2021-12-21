@@ -479,3 +479,23 @@ export const deleteImageCategorys = async (id) => {
     console.log("error: ", error);
   }
 };
+
+export const putBoolLogin = async (bool) => {
+  try {
+    const response = await axiosInstance.put(
+      "/boolLogin",
+      { bool },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.data.stat !== null) {
+      return response.data.message;
+    }
+    return null;
+  } catch (error) {
+    console.log("error: ", error);
+  }
+};

@@ -8,7 +8,7 @@ import {
   getPasswordAdmin,
   getPasswordLogin,
 } from "../../services/AdminServices";
-import { Input, TextField, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import "./LoginStyles.css";
 import "./../../App.css";
 import { adminBool } from "../../GlobalVar/AdminBool";
@@ -28,6 +28,7 @@ function Login() {
     try {
       async function checkBoolAndPassword() {
         const bool = loginBool();
+        console.log(bool);
         const passwordFromLogin = loginPassword();
         const password = await getPasswordLogin();
         if (!bool) {

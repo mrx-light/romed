@@ -1,4 +1,4 @@
-import { IconButton, Button } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { ReactComponent as ListSVG } from "./../../assets/images/list.svg";
 import { ReactComponent as GridSVG } from "./../../assets/images/grid.svg";
 

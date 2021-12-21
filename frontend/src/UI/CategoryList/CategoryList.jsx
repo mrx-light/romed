@@ -1,14 +1,11 @@
-//CategoryList
-
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getCategorys } from "../../services/AdminServices";
-import Header from "./../Header/Header";
 import { useStyles } from "./style/CategoryListStyles";
 import { ReactComponent as ListSVG } from "./../../assets/images/list.svg";
 import "./style/CategoryListStyles.css";
 
-const CategoryList = (props) => {
+const CategoryList = () => {
   const classes = useStyles();
   const history = useHistory();
   function goToCategoryhandler(param) {
@@ -47,7 +44,7 @@ const CategoryList = (props) => {
   return (
     <div className={`categoryList `}>
       <div
-        className={`${classes.allCategorys} ${classes.headerList} whiteColor backgreen justifyAlign borderMainText`}
+        className={`${classes.allCategorys} ${classes.headerList} whiteColor backgreen justifyAlign`}
       >
         <ListSVG
           className={`${classes.list} cursor`}

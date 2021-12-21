@@ -24,11 +24,17 @@ import "./../App.css";
 import Slider from "react-slick";
 import { useEffect, useRef, useState } from "react";
 import CategoryList from "../UI/CategoryList/CategoryList";
-import { getCategorys, getPasswordLogin, sendEmail } from "../services/AdminServices";
+import {
+  getCategorys,
+  getPasswordLogin,
+  sendEmail,
+  putBoolLogin,
+} from "../services/AdminServices";
 import { useHistory } from "react-router";
 import { loginBool } from "../GlobalVar/LoginBool";
 import { loginPassword, passwordStr } from "../GlobalVar/LoginPassword";
 import Header from "../UI/Header/Header";
+import { Dialog, DialogTitle } from "@material-ui/core";
 
 const images = [
   imageManuFacturer1,
@@ -46,7 +52,7 @@ const images = [
 const NextArrow = ({ onClick }) => {
   return (
     <div className="arrow next" onClick={onClick}>
-      <FaArrowRight />
+      <FaArrowRight fill={"#077d82"} />
     </div>
   );
 };
@@ -54,7 +60,7 @@ const NextArrow = ({ onClick }) => {
 const PrevArrow = ({ onClick }) => {
   return (
     <div className="arrow prev" onClick={onClick}>
-      <FaArrowLeft />
+      <FaArrowLeft fill={"#077d82"} />
     </div>
   );
 };
@@ -73,9 +79,13 @@ function CarouselApp() {
   const refProducts = useRef();
   const refPartners = useRef();
   const refContacts = useRef();
+
   const [imageIndex, setImageIndex] = useState(0);
   const [categorys, setCategorys] = useState([]);
   const [redirectToAdmin, setRedirectToLogin] = useState(false);
+  const [openFirstNew, setOpenFirstNew] = useState(false);
+  const [openSecondNew, setOpenSecondNew] = useState(false);
+
   const history = useHistory();
   const settings = {
     infinite: true,
@@ -104,7 +114,6 @@ function CarouselApp() {
       async function render() {
         const result = await getCategorys();
         if (result != null) {
-          console.log(result);
           const array = [];
           result.forEach((el, i) => {
             const card = (
@@ -140,25 +149,28 @@ function CarouselApp() {
     const valueNumber = refNumber.current.value;
     const valueText = refText.current.value;
     const valueName = refName.current.value;
-
+    const result = await getPasswordLogin();
+    const as = await putBoolLogin(true);
     if (redirectToAdmin && result[0]._id === valueEmail) {
-      const result = await getPasswordLogin();
-      // if (result[0]._id === valueEmail && redirectToAdmin) {
       const confirm = window.confirm(
         "Are You Sure?\n If You Aren't The Admin Plese Select Cancel And Refresh The Page"
       );
       if (confirm) {
-        loginBool();
+        loginBool(confirm);
         loginPassword(valueEmail);
-        redirect("/hhlgploginredirect");
+        redirect("/login");
       }
       return;
     }
-    const result = await sendEmail({ name: valueName, text: valueText, number: valueNumber, email: valueEmail });
+    // await sendEmail({
+    //   name: valueName,
+    //   text: valueText,
+    //   number: valueNumber,
+    //   email: valueEmail,
+    // });
 
     return;
   }
-
   return (
     <>
       <Header
@@ -167,7 +179,8 @@ function CarouselApp() {
         servicesScroll={refServices}
         productsScroll={refProducts}
         partnersScroll={refPartners}
-        contactsScroll={refContacts} />
+        contactsScroll={refContacts}
+      />
       <div className="containerPhotos">
         <Carousel
           fade={true}
@@ -177,7 +190,7 @@ function CarouselApp() {
           <Carousel.Item interval={1000}>
             <img className="d-block w-100" src={Img1} alt="First slide" />
             <Carousel.Caption>
-              <h3 className="textAbout">First slide label</h3>
+              <h3 className="textAbout caruselBigText">First slide label</h3>
               <p className="textAbout">
                 Nulla vitae elit libero, a pharetra augue mollis interdum.
               </p>
@@ -187,7 +200,7 @@ function CarouselApp() {
             <img className="d-block w-100" src={Img2} alt="Second slide" />
             <Carousel.Caption>
               <span>
-                <h3 className="textAbout"> Second slide label</h3>
+                <h3 className="textAbout caruselBigText">Second slide label</h3>
               </span>
               <p className="textAbout">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -197,7 +210,7 @@ function CarouselApp() {
           <Carousel.Item interval={1000}>
             <img className="d-block w-100" src={Img3} alt="Third slide" />
             <Carousel.Caption>
-              <h3 className="textAbout">Third slide label</h3>
+              <h3 className="textAbout caruselBigText">Third slide label</h3>
               <p className="textAbout">
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
@@ -205,7 +218,7 @@ function CarouselApp() {
           </Carousel.Item>
         </Carousel>
       </div>
-      <div className="backBlue" >
+      <div className="backBlue">
         <div className="max">
           <br />
           <div className="margin_center">
@@ -223,7 +236,6 @@ function CarouselApp() {
           </h4>
           <div className="spaceAround">
             <CategoryList />
-
             <div className="containerPhotosCategorys">
               <Carousel
                 fade={true}
@@ -235,18 +247,24 @@ function CarouselApp() {
               </Carousel>
             </div>
           </div>
+
+          <div className="center">
+            <Button variant="button" onClick={() => redirect("/categorys")}>
+              Toate Categoriile
+            </Button>
+          </div>
+          <br />
           <div className="underline bgGreen "></div>
           <br />
         </div>
       </div>
-
       <br />
       <div className="max" ref={refAboutUs}>
         <div className="margin_center">
           <div>
             <br />
-            <h1 className=" ">DESPRE NOI</h1>
-            <div className="underline  black"></div>
+            <h1 className="greenColor">DESPRE NOI</h1>
+            <div className="underline  greenColor"></div>
           </div>
         </div>
         <h4 className="textAlign  textH4About">
@@ -284,7 +302,7 @@ function CarouselApp() {
         </div>
       </div>
       <br />
-      <div className="underline black "></div>
+      <div className="underline greenBg "></div>
 
       <br />
 
@@ -298,7 +316,7 @@ function CarouselApp() {
           <div className="underline mx-auto white"></div>
           <Row>
             <Col xs={12} md={12} lg={6}>
-              <Card className="text-center bg pt-3 mt-4 borderGlobal">
+              <Card className="text-center bg pt-3 mt-4 ">
                 <Card.Body>
                   <Card.Title>MOLDMEDIZIN & MOLDDENT</Card.Title>
                   <Card.Text>
@@ -312,7 +330,70 @@ function CarouselApp() {
                     republică, o veritabilă şcoală a schimbului de experienţă şi
                     a celor mai recente realizări în domeniul medicinii.
                   </Card.Text>
-                  <Button variant="button">Vezi mai mult</Button>
+                  <Button
+                    variant="button"
+                    onClick={() => setOpenFirstNew(true)}
+                  >
+                    Vezi mai mult
+                  </Button>
+                  <Dialog
+                    open={openFirstNew}
+                    onClose={() => setOpenFirstNew(false)}
+                  >
+                    <Card className="text-center bg ">
+                      <Card.Body>
+                        <Card.Title>MOLDMEDIZIN & MOLDDENT</Card.Title>
+
+                        <h2>Un Text Important</h2>
+                        <br />
+                        <h5>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s,
+                          when an unknown printer took a galley of type and
+                          scrambled it to make a type specimen book.
+                        </h5>
+                        <br />
+                        <Button
+                          variant="button"
+                          onClick={() =>
+                            window.open(
+                              "https://mail.google.com/mail/u/0/#inbox",
+                              "_blank"
+                            )
+                          }
+                        >
+                          Link Catre Site
+                        </Button>
+                        <br />
+                        <br />
+                        <Card.Text>
+                          MOLDMEDIZIN & MOLDDENT este cel mai important
+                          eveniment medical din Republica Moldova, care are
+                          drept scop dezvoltarea pieţei autohtone de produse şi
+                          servicii medicale. Expoziţia are menirea de a
+                          contribui la dotarea instituţiilor medicale din ţară
+                          cu tehnologii şi tehnică performantă de diagnosticare
+                          şi tratament.Pentru 3 zile „Moldexpo” devine centrul
+                          atenţiei comunităţii medicale din republică, o
+                          veritabilă şcoală a schimbului de experienţă şi a
+                          celor mai recente realizări în domeniul medicinii.
+                        </Card.Text>
+                        <Button
+                          variant="button"
+                          onClick={() => setOpenFirstNew(false)}
+                        >
+                          Inchideti
+                        </Button>
+                        <br />
+                        <br />
+                      </Card.Body>
+                      <Card.Footer className="text-muted">
+                        {new Date().getDate()}/{new Date().getMonth()}/
+                        {new Date().getFullYear()}
+                      </Card.Footer>
+                    </Card>
+                  </Dialog>
                 </Card.Body>
                 <Card.Footer className="text-muted">
                   {new Date().getDate()}/{new Date().getMonth()}/
@@ -321,7 +402,7 @@ function CarouselApp() {
               </Card>
             </Col>
             <Col xs={12} md={12} lg={6}>
-              <Card className="text-center bg pt-3 mt-4 borderGlobal">
+              <Card className="text-center bg pt-3 mt-4 ">
                 <Card.Body>
                   <Card.Title>MOLDMEDIZIN & MOLDDENT</Card.Title>
                   <Card.Text>
@@ -335,7 +416,70 @@ function CarouselApp() {
                     republică, o veritabilă şcoală a schimbului de experienţă şi
                     a celor mai recente realizări în domeniul medicinii.
                   </Card.Text>
-                  <Button variant="button">Vezi mai mult</Button>
+                  <Button
+                    variant="button"
+                    onClick={() => setOpenSecondNew(true)}
+                  >
+                    Vezi mai mult
+                  </Button>
+                  <Dialog
+                    open={openSecondNew}
+                    onClose={() => setOpenSecondNew(false)}
+                  >
+                    <Card className="text-center bg ">
+                      <Card.Body>
+                        <Card.Title>MOLDMEDIZIN & MOLDDENT</Card.Title>
+
+                        <h2>Un Text Important</h2>
+                        <br />
+                        <h5>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s,
+                          when an unknown printer took a galley of type and
+                          scrambled it to make a type specimen book.
+                        </h5>
+                        <br />
+                        <Button
+                          variant="button"
+                          onClick={() =>
+                            window.open(
+                              "https://mail.google.com/mail/u/0/#inbox",
+                              "_blank"
+                            )
+                          }
+                        >
+                          Link Catre Site
+                        </Button>
+                        <br />
+                        <br />
+                        <Card.Text>
+                          MOLDMEDIZIN & MOLDDENT este cel mai important
+                          eveniment medical din Republica Moldova, care are
+                          drept scop dezvoltarea pieţei autohtone de produse şi
+                          servicii medicale. Expoziţia are menirea de a
+                          contribui la dotarea instituţiilor medicale din ţară
+                          cu tehnologii şi tehnică performantă de diagnosticare
+                          şi tratament.Pentru 3 zile „Moldexpo” devine centrul
+                          atenţiei comunităţii medicale din republică, o
+                          veritabilă şcoală a schimbului de experienţă şi a
+                          celor mai recente realizări în domeniul medicinii.
+                        </Card.Text>
+                        <Button
+                          variant="button"
+                          onClick={() => setOpenSecondNew(false)}
+                        >
+                          Inchideti
+                        </Button>
+                        <br />
+                        <br />
+                      </Card.Body>
+                      <Card.Footer className="text-muted">
+                        {new Date().getDate()}/{new Date().getMonth()}/
+                        {new Date().getFullYear()}
+                      </Card.Footer>
+                    </Card>
+                  </Dialog>
                 </Card.Body>
                 <Card.Footer className="text-muted">
                   {new Date().getDate()}/{new Date().getMonth()}/
@@ -354,8 +498,10 @@ function CarouselApp() {
         <br />
         <br />
         <div className="container">
-          <h1 className="fs-1 text-uppercase text-center ">PARTENERI</h1>
-          <div className="underline mx-auto black"></div>
+          <h1 className="fs-1 text-uppercase text-center greenColor">
+            PARTENERI
+          </h1>
+          <div className="underline mx-auto "></div>
           <h4 className="textAlign  textH4About">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -382,7 +528,7 @@ function CarouselApp() {
           </Row>
         </div>
 
-        <div className="underline mx-auto black"></div>
+        <div className="underline mx-auto"></div>
         <br />
       </div>
       <div className="backBlue" ref={refServices}>
@@ -462,8 +608,8 @@ function CarouselApp() {
       <div ref={refContacts}>
         <br />
         <br />
-        <h1 className=" center">CONTACTEAZĂ-NE</h1>
-        <div className="underline mx-auto black"></div>
+        <h1 className="center greenColor">CONTACTEAZĂ-NE</h1>
+        <div className="underline mx-auto"></div>
         <h4 className="textAlign  textH4About">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -478,9 +624,10 @@ function CarouselApp() {
             ></iframe>
           </Col>
           <Col xs={12} md={12} lg={6}>
-            <form className="">
+            <form>
               <div className="form-group mb-5">
                 <input
+                  maxLength="30"
                   ref={refName}
                   type="text"
                   className="form-control borderInputs"
@@ -497,13 +644,15 @@ function CarouselApp() {
               </div>
               <div className="form-group mb-5">
                 <input
+                  maxLength="15"
                   ref={refNumber}
-                  type="tel"
+                  type="number"
                   className="form-control borderInputs"
                   placeholder="Telefon"
                 />
               </div>
               <textarea
+                maxLength="200"
                 ref={refText}
                 className="form-control mb-3 borderInputs"
                 cols="30"
@@ -522,7 +671,7 @@ function CarouselApp() {
             </form>
           </Col>
         </Row>
-        <div className="underline mx-auto black"></div>
+        <div className="underline mx-auto"></div>
         <br />
       </div>
     </>

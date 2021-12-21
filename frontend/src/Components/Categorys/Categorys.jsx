@@ -6,18 +6,8 @@ import { getProductsLimit } from "../../services/ProductServices";
 import { useState } from "react";
 import Header from "../../UI/Header/Header";
 import { useHistory } from "react-router";
-import { useParams } from "react-router-dom";
-import { Card, Carousel } from "react-bootstrap";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  IconButton,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Carousel } from "react-bootstrap";
+import { Button, IconButton } from "@material-ui/core";
 import "./../../App.css";
 import "./style/CategoryStyles.css";
 import Footer from "./../../UI/Footer/Footer";
@@ -42,6 +32,18 @@ import { getProduct } from "../../services/ProductServices";
 import CategoryList from "../../UI/CategoryList/CategoryList";
 
 const Categorys = (props) => {
+  const reportWindowSize = () => {
+    try {
+      let viewport = window.innerWidth;
+      setViewportWidth(viewport);
+      return viewport;
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  window.onresize = reportWindowSize;
+
   const style = {
     backgroundColor: "#077d82",
     color: "#fff",
@@ -106,7 +108,7 @@ const Categorys = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const [categoryNameForAdd, setCategoryNameForAdd] = useState("all");
-
+  const [viewportWidth, setViewportWidth] = useState(0);
   const linkWebsite = (element) => {
     window.open(element, "_blank");
   };
@@ -164,7 +166,15 @@ const Categorys = (props) => {
                 </span>
                 <br />
                 <span>
-                  Tipul: <span className="greenColor font">{el.type}</span>
+                  Tipul:{" "}
+                  <span
+                    className="greenColor font cursorDefault"
+                    title={el.type}
+                  >
+                    {el.type.length > 22
+                      ? el.type.slice(0, 16) + "..."
+                      : el.type}
+                  </span>
                 </span>
                 <br />
                 <div>
@@ -202,6 +212,12 @@ const Categorys = (props) => {
           return;
         }
         if (showMethod === "list") {
+          if (viewportWidth < 810) {
+            alert(
+              "Din pacate aceasa functie nu poate fi folosita deoarece lungimea ecranului dmn este prea mica"
+            );
+            return;
+          }
           const arrList = [];
           result.forEach((el, i) => {
             const productList = listProduct(el, i);
@@ -242,10 +258,14 @@ const Categorys = (props) => {
             );
             return;
           }
+          setProductsSerch("");
           setTextSerch(
-            <h4 className="center greenColor">
-              Nu A fost Gasit Nici Un Rezultat
-            </h4>
+            <>
+              <br />
+              <h4 className="center greenColor">
+                Nu A fost Gasit Nici Un Rezultat
+              </h4>
+            </>
           );
           return;
         }
@@ -648,7 +668,7 @@ const Categorys = (props) => {
     try {
       async function renderProducts() {
         const result = await getProductsLimit(12);
-        console.log(result)
+        console.log(result);
         if (result !== null) {
           let arr = [];
           result.forEach((element, i) => {
@@ -700,6 +720,25 @@ const Categorys = (props) => {
 
   useEffect(() => {
     try {
+      const method = localStorage.getItem("products");
+      console.log(viewportWidth, method);
+      if (method === "list") {
+        if (viewportWidth < 810) {
+          const arr = [];
+          productsArr.forEach((el, i) => {
+            const product = gridProduct(el, i);
+            arr.push(product);
+          });
+          setProducts(arr);
+        }
+      }
+    } catch (error) {
+      console.log(error, error);
+    }
+  }, [viewportWidth]);
+
+  useEffect(() => {
+    try {
       async function renderProductsNumber() {
         const result = await getProductsNumber("all");
         console.log(result);
@@ -722,7 +761,7 @@ const Categorys = (props) => {
           <div className="margin_center">
             <div>
               <br />
-              <h1 className=" ">PRODUSELE NOASTRE</h1>
+              <h1 className="greenColor ">PRODUSELE NOASTRE</h1>
               <div className="underline bgGreen "></div>
             </div>
           </div>
@@ -745,6 +784,15 @@ const Categorys = (props) => {
                 {allCategorys}
               </Carousel>
             </div>
+          </div>
+          <div className="center">
+            <Button
+              style={style}
+              variant="contained"
+              onClick={() => history.push("/home")}
+            >
+              Acasa
+            </Button>
           </div>
           <br />
           <div className="underline bgGreen "></div>

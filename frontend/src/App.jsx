@@ -9,7 +9,6 @@ import Product from "./Components/Product/Product";
 import CategoryType from "./Components/CategoryType/CategoryType";
 import HomePage from "./HomePage/HomePage";
 import Login from "./Components/Login/Login";
-// import Type from './Components/Type/Type';
 function App(props) {
   return (
     <BrowserRouter>
@@ -32,7 +31,7 @@ function App(props) {
         <Route path="/product/:id" exact>
           <Product />
         </Route>
-        <Route path="/hhlgploginredirect" exact>
+        <Route path="/login" exact>
           <Login />
         </Route>
 
